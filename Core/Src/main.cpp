@@ -5,12 +5,16 @@ int main(void) {
 #ifdef SIM_ON
     SharedMemory::start();
 #endif
-
-    DigitalOutput led_on(PB0);
+    ADC::inscribe(PA0);
     STLIB::start();
 
-    Time::register_low_precision_alarm(100, [&]() { led_on.toggle(); 
-    });
+    ADC::turn_on(0);
+    ADC::get_value_pointer(0);
+    
+    // meter en un bucle e ir mostrando valores
+    ADC::get_int_value(0);
+    
+    
 
     while (1) {
         STLIB::update();
